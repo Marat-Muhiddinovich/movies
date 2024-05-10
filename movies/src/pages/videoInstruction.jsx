@@ -1,7 +1,10 @@
 import React from 'react'
 
-export const VideoInstruction = () => {
+export default function VideoInstruction() {
   return (
-    <div>VideoInstruction</div>
+    <div>
+      <h1>Video Instruction</h1>
+    </div>
   )
 }
+
