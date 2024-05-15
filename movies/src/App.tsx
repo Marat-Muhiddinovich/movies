@@ -3,19 +3,19 @@ import './App.css';
 import SideBar from './components/sideBar';
 import EnhancedTable from './pages/table';
 import Header from './components/header';
-import { useState } from 'react';
-
+import React from 'react';
 function App() {
+  
+  const [open, setOpen] = React.useState(false);
 
-  const [open, setOpen] = useState(false);
+  const toggleDrawer = (newOpen: Boolean) => () => {
+    setOpen(newOpen);
+  }
 
-  const toggleDrawer = () => {
-    setOpen(!open);
-  };
   return (
     <div className="App" style={{ background: '#f1f5f8'}}>
-      <Header  />
-      <SideBar />
+      <Header toggleDrawer={toggleDrawer} />
+      <SideBar open={open} toggleDrawer={toggleDrawer} />
         <Routes>
           <Route path="/table" Component={EnhancedTable} />
         </Routes>

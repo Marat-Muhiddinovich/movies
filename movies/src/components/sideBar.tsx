@@ -1,31 +1,34 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import { CalendarMonthRounded, LibraryBooksRounded, LiveHelpRounded, LocalLibraryRounded, MenuOpenOutlined } from '@mui/icons-material';
+import {  CalendarMonthRounded, ContentPasteSearchRounded, InsertDriveFileRounded, LibraryBooksRounded, LiveHelpRounded, LocalLibraryRounded, InfoRounded, BarChartRounded, EmojiEventsRounded, SchoolRounded } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 
-export default function SideBar() {
+interface SideBarProps {
+  open: Boolean
+  toggleDrawer: any
+}
+
+export default function SideBar({open, toggleDrawer}: SideBarProps) {
 
   const items = [
-    {id: 1, text: "Courses Selection", courseIcon: <LibraryBooksRounded /> },
+    {id: 1, text: "Courses Selection", link: "table", courseIcon: <LibraryBooksRounded /> },
     {id: 2, text: "My courses", courseIcon: <LocalLibraryRounded /> },
     {id: 3, text: "Schedule", courseIcon: <CalendarMonthRounded /> },
-    {id: 4, text: "Finals", courseIcon: <LiveHelpRounded /> }
+    {id: 4, text: "Retake", courseIcon: <ContentPasteSearchRounded /> },
+    {id: 5, text: "Finals", courseIcon: <LiveHelpRounded /> },
+    {id: 6, text: "Individual study plan", courseIcon: <InsertDriveFileRounded /> },
+    {id: 7, text: "Information", courseIcon: <InfoRounded /> },
+    {id: 8, text: "Survey", courseIcon: <BarChartRounded /> },
+    {id: 9, text: "Tests", courseIcon: <EmojiEventsRounded /> },
+    {id: 10, text: "Graduation work", courseIcon: <SchoolRounded /> }
   ]
-
-  const [open, setOpen] = React.useState(false);
-  
-  const toggleDrawer = (newOpen: Boolean) => () => {
-    setOpen(newOpen);
-  };
 
   const DrawerList = (
     <Box sx={{ width: 250, height: '100%', background: 'rgb(29, 45, 91)', padding: 1, color: 'white' }} role="presentation" onClick={toggleDrawer(false)}>
@@ -36,38 +39,29 @@ export default function SideBar() {
           </a>
       </div>
       <List>
+
+      <Divider sx={{background: 'white'}}  />
         {items.map((item) => (
           <div>
-          <ListItem key={item.text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {item?.courseIcon}
-              </ListItemIcon>
-              <ListItemText primary={item.text} />
-            </ListItemButton>
-          </ListItem>
+          <Link style={{textDecorationColor: 'rgb(29, 45, 91)'}} to={`/${item.link}`}>
+            <ListItem key={item.text} disablePadding>
+                <ListItemButton>
+                  <ListItemIcon sx={{color: 'white'}}>
+                    {item?.courseIcon}
+                  </ListItemIcon>
+                  <ListItemText style={{color: 'white'}} primary={item.text} />
+                </ListItemButton>
+            </ListItem>
+          </Link>
           </div>
         ))}
       </List>
-      <Divider sx={{background: 'white'}}  />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+     
     </Box>
   );
 
   return (
     <div>
-      <Button sx={{marginTop: 80}} onClick={toggleDrawer(true)}>Open drawer</Button>
       <Drawer open={open} onClose={toggleDrawer(false)}>
         {DrawerList}
       </Drawer>
