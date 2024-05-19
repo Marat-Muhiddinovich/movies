@@ -1,7 +1,6 @@
 
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import { Link } from 'react-router-dom';
 import { MenuOpenOutlined, VideoCameraFrontOutlined } from '@mui/icons-material';
@@ -42,14 +41,15 @@ export default function Header({toggleDrawer}: HeaderProps) {
       }, []); 
 
   return (
-    <Box>
       <AppBar position="fixed" sx={{ zIndex: 1000, height: 83, p: 1, background: '#ececf1', display: 'flex', justifyContent: 'space-between', alignItems: 'center', pl: 2, pr: 2 }}>
         <Toolbar sx={{ width: '100%', display: 'flex', justifyContent: 'space-between'}}>
-          <Link to="/" style={{    fontFamily: 'Ubuntu, sans-serif', textDecoration: 'none', display: 'flex', alignItems: 'center', color: '#1d2d5b', fontWeight: 600, textTransform: 'uppercase' }}>
-            <img src="https://lms.tuit.uz/assets/images/logo-md.png" height={40} alt="Logo" />
-              <span style={{  width: 170, marginLeft: 10, display: 'block', fontSize: 10, fontWeight: 600, textTransform: 'uppercase', lineHeight: 1.5, color: 'rgba(29, 45, 91' }}>Muhammad al-Xorazmiy nomidagi Toshkent Axborot Texnologiyalari Universiteti</span>
-              <MenuOpenOutlined onClick={toggleDrawer(true)} sx={{ marginLeft: 10 }} />
-          </Link>
+          <div style={{ display: 'flex', alignItems: 'center'}}>
+            <Link to="/" style={{    fontFamily: 'Ubuntu, sans-serif', textDecoration: 'none', display: 'flex', alignItems: 'center', color: '#1d2d5b', fontWeight: 600, textTransform: 'uppercase' }}>
+              <img src="https://lms.tuit.uz/assets/images/logo-md.png" height={40} alt="Logo" />
+                <span style={{  width: 170, marginLeft: 10, display: 'block', fontSize: 10, fontWeight: 600, textTransform: 'uppercase', lineHeight: 1.5, color: 'rgba(29, 45, 91' }}>Muhammad al-Xorazmiy nomidagi Toshkent Axborot Texnologiyalari Universiteti</span>
+            </Link>
+            <MenuOpenOutlined onClick={toggleDrawer(true)} sx={{ marginLeft: 10, cursor: 'pointer' }} />
+          </div>
           <ul style={{ color: 'rgba(29, 45, 91', listStyle: 'none', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 40 }}>
                 <li style={{ marginLeft: 20 }}>
                     <p>
@@ -65,11 +65,10 @@ export default function Header({toggleDrawer}: HeaderProps) {
                
 
                  <li>
-                     <a href="#" style={{ textDecoration: 'none' }} >                         <AccountMenu />
+                     <a href="/"  style={{ textDecoration: 'none' }} >                         <AccountMenu />
                      </a>                 </li>
              </ul>
         </Toolbar>
       </AppBar>
-    </Box>
   );
 }

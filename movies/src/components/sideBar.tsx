@@ -18,7 +18,7 @@ interface SideBarProps {
 export default function SideBar({open, toggleDrawer}: SideBarProps) {
 
   const items = [
-    {id: 1, text: "Courses Selection", link: "table", courseIcon: <LibraryBooksRounded /> },
+    {id: 1, text: "Courses Selection", link: "student/subject", courseIcon: <LibraryBooksRounded /> },
     {id: 2, text: "My courses", courseIcon: <LocalLibraryRounded /> },
     {id: 3, text: "Schedule", courseIcon: <CalendarMonthRounded /> },
     {id: 4, text: "Retake", courseIcon: <ContentPasteSearchRounded /> },
@@ -31,7 +31,7 @@ export default function SideBar({open, toggleDrawer}: SideBarProps) {
   ]
 
   const DrawerList = (
-    <Box sx={{ width: 250, height: '100%', background: 'rgb(29, 45, 91)', padding: 1, color: 'white' }} role="presentation" onClick={toggleDrawer(false)}>
+    <Box sx={{ width: 250, background: 'rgb(29, 45, 91)', padding: 1, color: 'white' }} role="presentation" onClick={toggleDrawer(false)}>
       <div style={{ padding: 10 }}>
           <a href="/" style={{    fontFamily: 'Ubuntu, sans-serif', textDecoration: 'none', display: 'flex', alignItems: 'center', color: '#1d2d5b', fontWeight: 600, textTransform: 'uppercase' }}>
               <img src="https://lms.tuit.uz/assets/images/logo-md.png" height={40} alt="Logo" />
@@ -61,8 +61,8 @@ export default function SideBar({open, toggleDrawer}: SideBarProps) {
   );
 
   return (
-    <div>
-      <Drawer open={open} onClose={toggleDrawer(false)}>
+    <div className='sideBar'>
+      <Drawer open={open ? true : false} onClose={toggleDrawer(false)}>
         {DrawerList}
       </Drawer>
     </div>
